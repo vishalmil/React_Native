@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
-import { saveCredentials } from '../utils/storage';
 import { validateEmail } from '../utils/validation';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../FirebaseConfig';
@@ -103,39 +102,39 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={styles.signup_container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <TextInput
         placeholder="Username"
-        style={styles.input}
+        style={styles.signup_input}
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
         autoCorrect={false}
       />
-      {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
+      {usernameError ? <Text style={styles.signup_errorText}>{usernameError}</Text> : null}
 
       <TextInput
         placeholder="Password"
-        style={styles.input}
+        style={styles.signup_input}
         secureTextEntry
         value={password}
         onChangeText={setPassword}
       />
-      {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
+      {passwordError ? <Text style={styles.signup_errorText}>{passwordError}</Text> : null}
 
       <TextInput
         placeholder="Email"
-        style={styles.input}
+        style={styles.signup_input}
         keyboardType="email-address"
         autoCapitalize="none"
         value={email}
         onChangeText={setEmail}
       />
-      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+      {emailError ? <Text style={styles.signup_errorText}>{emailError}</Text> : null}
 
-      <View style={styles.buttonContainer}>
+      <View style={styles.signup_buttonContainer}>
         {loading ? (
           <ActivityIndicator size="small" color="#007AFF" />
         ) : (
@@ -150,13 +149,13 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
 export default SignupScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  signup_container: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#f9f9f9',
   },
-  input: {
+  signup_input: {
     borderWidth: 1,
     borderColor: '#ccc',
     marginBottom: 5,
@@ -164,12 +163,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#fff',
   },
-  errorText: {
+  signup_errorText: {
     color: 'red',
     marginBottom: 10,
     fontSize: 12,
   },
-  buttonContainer: {
+  signup_buttonContainer: {
     marginVertical: 15,
   },
 });

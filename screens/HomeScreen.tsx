@@ -14,17 +14,15 @@ import { fetchTrendingBooks } from '../api/booksApi';
 import { setTrending } from '../store/bookSlice';
 import BookCard from '../components/BookCard';
 import Layout from './_Layout';
-import { globalStyles } from '../styles/globalStyles';
+import { styles } from '../styles/styles';
+import { colors } from '../theme/colors';
 
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   const trendingBooks = useSelector((state: RootState) => state.books.trending);
 
   const themeMode = useSelector((state: RootState) => state.theme.theme);
-  const themeColors = {
-    light: { background: '#fff', text: '#000', subText: '#888', sectionBg: '#f9f9f9' },
-    dark: { background: '#1c1c1c', text: '#fff', subText: '#aaa', sectionBg: '#333' },
-  }[themeMode];
+  const themeColors = colors[themeMode]
 
   const [refreshing, setRefreshing] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
@@ -62,18 +60,18 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Layout>
-      <View style={{ padding: 20, backgroundColor: themeColors.background, flex: 1 }}>
+      <View style={[styles.home_container, { backgroundColor: themeColors.background }]}>
         {!isOnline && (
-          <Text style={{ color: 'red', marginBottom: 10 }}>You are offline</Text>
+          <Text style={styles.home_offlineText}>You are offline</Text>
         )}
 
-        <Text style={[globalStyles.title , { color: themeColors.text }]}>Trending Books</Text>
+        <Text style={[styles.home_title, { color: themeColors.text }]}>Trending Books</Text>
 
         {loading ? (
-          <ActivityIndicator size="large" color="#007AFF" style={{ marginTop: 20 }} />
+          <ActivityIndicator size="large" color="#007AFF" style={styles.home_loader} />
         ) : (
           <ScrollView
-            contentContainerStyle={{ paddingVertical: 10 }}
+            contentContainerStyle={styles.home_scrollContent}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }

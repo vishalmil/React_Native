@@ -8,6 +8,7 @@ import { setSearchResults, Book } from '../store/bookSlice';
 import { RootState } from '../store/store';
 import { colors } from '../theme/colors';
 import { searchBooks } from '../api/booksApi';
+import { styles } from '../styles/styles';
 
 const SearchScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,19 +35,19 @@ const SearchScreen: React.FC = () => {
 
   return (
     <Layout>
-      <ScrollView contentContainerStyle={[styles.container, { backgroundColor: theme.background }]}>
-        <Text style={[styles.title, { color: theme.text }]}>Search Books</Text>
+      <ScrollView contentContainerStyle={[styles.search_container, { backgroundColor: theme.background }]}>
+        <Text style={[styles.search_title, { color: theme.text }]}>Search Books</Text>
 
-        <View style={styles.searchRow}>
+        <View style={styles.search_searchRow}>
           <TextInput
-            style={[styles.input, { borderColor: theme.border, color: theme.text }]}
+            style={[styles.search_input, { borderColor: theme.border, color: theme.text }]}
             placeholder="Search by title or author"
             placeholderTextColor={theme.placeholder}
             value={query}
             onChangeText={setQuery}
             onSubmitEditing={handleSearch}
           />
-          <TouchableOpacity style={[styles.button, { backgroundColor: theme.buttonBackground }]} onPress={handleSearch}>
+          <TouchableOpacity style={[styles.search_button, { backgroundColor: theme.buttonBackground }]} onPress={handleSearch}>
             <Text style={{ color: theme.buttonText }}>Search</Text>
           </TouchableOpacity>
         </View>
@@ -67,11 +68,3 @@ const SearchScreen: React.FC = () => {
 };
 
 export default SearchScreen;
-
-const styles = StyleSheet.create({
-  container: { padding: 20, flexGrow: 1 },
-  title: { fontSize: 26, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
-  searchRow: { flexDirection: 'row', alignItems: 'center' },
-  input: { flex: 1, borderWidth: 1, borderRadius: 8, padding: 10, marginRight: 10 },
-  button: { paddingVertical: 10, paddingHorizontal: 15, borderRadius: 8, alignItems: 'center' },
-});

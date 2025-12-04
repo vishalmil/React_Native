@@ -4,6 +4,7 @@ import { View, Text, Image, StyleSheet, Animated, Easing, Platform, ActivityIndi
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 import { getCredentials } from '../utils/storage';
+import { styles } from '../styles/styles';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 
@@ -64,55 +65,16 @@ const SplashScreen: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.logoWrap, { opacity, transform: [{ scale }] }]}>
-        <Image source={logoSource} style={styles.logo} resizeMode="contain" />
+    <View style={styles.splash_container}>
+      <Animated.View style={[styles.splash_logoWrap, { opacity, transform: [{ scale }] }]}>
+        <Image source={logoSource} style={styles.splash_logo} resizeMode="contain" />
       </Animated.View>
 
       {/* subtitle + loader */}
-      <Text style={styles.appName}>My Books</Text>
+      <Text style={styles.splash_appName}>My Books</Text>
       <ActivityIndicator size="small" color="#888" style={{ marginTop: 12 }} />
     </View>
   );
 };
 
 export default SplashScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoWrap: {
-    width: 160,
-    height: 160,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    // subtle shadow for iOS
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.12,
-    shadowRadius: 10,
-    // elevation for Android
-    elevation: 6,
-    backgroundColor: 'transparent',
-  },
-  logo: {
-    width: 140,
-    height: 140,
-  },
-  appName: {
-    marginTop: 18,
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#222',
-  },
-  footerText: {
-    marginTop: 18,
-    fontSize: 12,
-    color: '#888',
-  },
-});

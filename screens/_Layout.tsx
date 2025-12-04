@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { colors } from "../theme/colors";
 import Footer from "../components/Footer";
+import { styles } from "../styles/styles";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -16,22 +17,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const themeColors = colors[theme];
 
   return (
-    <View style={[styles.container, { backgroundColor: themeColors.background }]}>
+    <View style={[styles.layout_container, { backgroundColor: themeColors.background }]}>
       <Header />
-      <View style={styles.content}>{children}</View>
+      <View style={styles.layout_content}>{children}</View>
       <Footer />
     </View>
   );
 };
 
 export default Layout;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-});

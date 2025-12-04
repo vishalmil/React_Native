@@ -1,5 +1,5 @@
 // src/styles/theme.js
-export const globalTheme = {
+export const styles = {
   light: {
     background: '#fff',
     text: '#000',
