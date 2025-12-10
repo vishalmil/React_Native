@@ -1,6 +1,6 @@
 // screens/SettingsScreen.tsx
 import React from "react";
-import { View, Text, StyleSheet, Switch, TouchableOpacity, } from "react-native";
+import { View, Text, Switch, TouchableOpacity, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { saveTheme } from "../store/themeSlice";

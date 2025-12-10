@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   Button,
-  StyleSheet,
   Alert,
   KeyboardAvoidingView,
   Platform,
@@ -17,6 +16,7 @@ import { validateEmail } from '../utils/validation';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../FirebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
+import { styles } from '../styles/styles';
 
 
 type Props = {
@@ -147,28 +147,3 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
 };
 
 export default SignupScreen;
-
-const styles = StyleSheet.create({
-  signup_container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#f9f9f9',
-  },
-  signup_input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 5,
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: '#fff',
-  },
-  signup_errorText: {
-    color: 'red',
-    marginBottom: 10,
-    fontSize: 12,
-  },
-  signup_buttonContainer: {
-    marginVertical: 15,
-  },
-});

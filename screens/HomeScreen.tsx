@@ -5,6 +5,7 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import NetInfo from '@react-native-community/netinfo';
@@ -70,16 +71,26 @@ const HomeScreen: React.FC = () => {
         {loading ? (
           <ActivityIndicator size="large" color="#007AFF" style={styles.home_loader} />
         ) : (
-          <ScrollView
+          // <ScrollView
+          //   contentContainerStyle={styles.home_scrollContent}
+          //   refreshControl={
+          //     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          //   }
+          //>
+
+          //   {trendingBooks.map((book) => (
+          //     <BookCard key={book.id} book={book} />
+          //   ))}
+          // </ScrollView>
+
+          <FlatList
+            data={trendingBooks}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <BookCard book={item} />}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
             contentContainerStyle={styles.home_scrollContent}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
-          >
-            {trendingBooks.map((book) => (
-              <BookCard key={book.id} book={book} />
-            ))}
-          </ScrollView>
+          />
         )}
       </View>
     </Layout>

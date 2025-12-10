@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import Layout from './_Layout';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Ionicons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -196,10 +195,6 @@ const ProfileScreen: React.FC = () => {
       <View style={[styles.profile_container, { backgroundColor: themeColors.background }]}>
         <Text style={[styles.profile_heading, { color: themeColors.text }]}>My Profile</Text>
 
-        <Text style={[styles.profile_hint, { color: themeColors.placeholder }]}>
-          Tap to choose from Gallery, Long press to take Photo
-        </Text>
-
         {/* Username */}
         <View style={styles.profile_inputWrapper}>
           <Text style={{ color: themeColors.text }}>
@@ -247,6 +242,7 @@ const ProfileScreen: React.FC = () => {
           </Text>
           <TouchableOpacity style={[styles.profile_input, { borderColor: themeColors.border }]} onPress={() => setShowPicker(true)}>
             <Text style={{ color: dob ? themeColors.text : themeColors.placeholder }}>
+              {dob ? dob.toDateString() : 'Select Date of Birth'}
             </Text>
           </TouchableOpacity>
           {showPicker && (

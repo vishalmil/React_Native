@@ -1,10 +1,10 @@
 // screens/SearchScreen.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import BookCard from '../components/BookCard';
 import Layout from './_Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchResults, Book } from '../store/bookSlice';
+import { setSearchResults } from '../store/bookSlice';
 import { RootState } from '../store/store';
 import { colors } from '../theme/colors';
 import { searchBooks } from '../api/booksApi';

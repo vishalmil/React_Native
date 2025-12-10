@@ -27,12 +27,15 @@ const bookSlice = createSlice({
   reducers: {
     setTrending: (state, action: PayloadAction<Book[]>) => {
       state.trending = action.payload;
+      console.log(action.payload);
     },
     setSearchResults: (state, action: PayloadAction<Book[]>) => {
       state.searchResults = action.payload;
+      console.log(action.payload);
     },
     addFavorite: (state, action: PayloadAction<Book>) => {
       state.favorites.push(action.payload);
+      console.log(action.payload);
       //AsyncStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favorites));
     },
     removeFavorite: (state, action: PayloadAction<string>) => {
